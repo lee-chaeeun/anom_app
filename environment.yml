@@ -1,0 +1,4 @@
+name: myenv
+channels:
+  - defaults
+prefix: /home/bitchae/anaconda3/envs/myenv
