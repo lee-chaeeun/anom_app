@@ -1,5 +1,5 @@
 
-##Containerized Anomaly Detection on Time Series Visualized on Web Server
+## Containerized Anomaly Detection on Time Series Visualized on Web Server
 The goal of this repository is to visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container.
 
 A. Garg, W. Zhang, J. Samaran, R. Savitha and C. -S. Foo, "An Evaluation of Anomaly Detection and Diagnosis in Multivariate Time Series," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3105827.
