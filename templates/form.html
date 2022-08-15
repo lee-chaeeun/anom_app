@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anomaly Detection Flask Web Application</title>
+    
+    <style>
+        .message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+        nav a {
+            color: #008000;
+            font-size: 1em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div class="content">
+        <p>A. Garg, W. Zhang, J. Samaran, R. Savitha and C. -S. Foo, "An Evaluation of Anomaly Detection and Diagnosis in Multivariate Time Series," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3105827. </p>  
+         <a href="https://github.com/astha-chem/mvts-ano-eval" title="Anomaly Detection on Time Series: An Evaluation of Deep Learning Methods">Github</a>      
+
+        <h1>Datasets </h1>
+        
+        <h3>skab </h3>       
+        <p>The Skoltech Anomaly Benchmark testbed consists of a water circulation system and its control system, along with a data-processing and storage system. Examples of the type of anomalies induced include partial valve closures, connecting shaft imbalance, reduced motor power, cavitation and flow disturbances. Train and test splits are provided by the authors. The dataset is available at https://www.kaggle.com/yuriykatser/skoltech-anomaly-benchmark-skab/version/1.         
+        <p>I. D. Katser and V. O. Kozitsin, “Skoltech anomaly benchmark (skab),” 2020. [Online]. Available: https://www.kaggle.com/dsv/169395</p>
+        
+        <h3>smap, msl </h3>   
+        <p> expert-labeled datasets from real anomalies encountered during the operation of two spacecraft - Soil Moisture Active Passive (SMAP) satellite and the Mars Science Laboratory (MSL) rover, Curiosity </p>                
+        <p>[5] K. Hundman, V. Constantinou, C. Laporte, I. Colwell, and T. Soderstrom, “Detecting spacecraft anomalies using lstms and nonparametric dynamic thresholding,” in Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining. ACM, 2018, pp. 387–395.</p>
+        
+        <h3>smd </h3>   
+        <p>Server Machine Dataset collected over 5 weeks from a large internet company. It consists of data from 28 entities regularly sampled every minute. The train-test split is 50% each for train and test, suggested by the authors. An interpretation label is provided for each anomaly which we use for anomaly diagnosis.</p>       
+        <p>Y. Su, Y. Zhao, C. Niu, R. Liu, W. Sun, and D. Pei, “Robust anomaly detection for multivariate time series through stochastic recurrent neural network,” in Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2019, pp. 2828–
+2837.</p>
+         
+        <p>datasets in repair: swat, damadics-s, wadi,</p> 
+    </div>       
+    
+    <div class="content">
+    
+        <h1>Anomaly Detection Algorithms </h1>
+        <h3>PcaRecons </h3>  
+        <p>PCA Reconstruction for lossy reconstruction [35] by retaining only a subset of principal
+components (PC) that explain 90% of the variance</p>
+        <p>S. Li and J. Wen, “A model-based fault detection and diagnostic methodology based on pca method and wavelet transform,” Energy and Buildings, vol. 68, pp. 63–71, 2014</p>
+        
+        <h3>UnivarAutoEncoder_recon_all </h3>    
+        <p>requires high computation power and GPU memory. </p>  
+        <p>Channel-wise auto-encoders for each channel.</p>        
+        
+        <h3>AutoEncoder_recon_all </h3>      
+        <p>S. Hawkins, H. He, G. Williams, and R. Baxter, “Outlier detection using replicator neural networks,” in International Conference on Data Warehousing and Knowledge Discovery. Springer, 2002, pp. 170–180.</p>
+          
+        <h3>LSTM-ED_recon_all </h3>   
+        <p>P. Malhotra, A. Ramakrishnan, G. Anand, L. Vig, P. Agarwal, and G. Shroff, “Lstm-based encoder-decoder for multi-sensor anomaly detection,” arXiv preprint arXiv:1607.00148, 2016.</p>
+             
+        <h3>TcnED</h3>   
+        <p>based on work from<p/>        
+        <p> S. Bai, J. Z. Kolter, and V. Koltun, “An empirical evaluation of generic convolutional and recurrent networks for sequence modeling,” arXiv preprint arXiv:1803.01271, 2018.</p>        
+                   
+        <h3>VAE-LSTM</h3>
+        <p>based on work from<p/>
+        <p>D. Park, Y. Hoshi, and C. C. Kemp, “A multimodal anomaly detector for robot-assisted feeding using an lstm-based variational autoencoder,” IEEE Robotics and Automation Letters, vol. 3, no. 3, pp. 1544–1551, 2018.</p>           
+
+        <h3>MSCRED</h3>  
+        <p>requires high computation power and GPU memory. </p>          
+        <p> C. Zhang, D. Song, Y. Chen, X. Feng, C. Lumezanu, W. Cheng, J. Ni, B. Zong, H. Chen, and N. V. Chawla, “A deep neural network for unsupervised anomaly detection and diagnosis in multivariate time series data,” in Proceedings of the AAAI Conference on Artificial Intelligence, vol. 33, 2019, pp. 1409–1416.</p>    
+           
+        <h3>OmniAnoAlgo</h3>     
+        <p>Y. Su, Y. Zhao, C. Niu, R. Liu, W. Sun, and D. Pei, “Robust anomaly detection for multivariate time series through stochastic recurrent neural network,” in Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2019, pp. 2828–
+2837.</p>   
+                                                     
+    </div>
+    
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}   
+
+</body>
+</html>
+
+<form action="{{ url_for("user_input")}}" method="post">
+<label for="dataset_name">Dataset name:</label>
+<input type="text" id="dataset_name" name="dataset_name" placeholder="swat, damadics-s, wadi, msl, smap, smd, skab">
+
+<label for="algorithm_name">Algorithm name:</label>
+<input type="text" id="algorithm_name" name="algorithm_name" placeholder=                    "PcaRecons, UnivarAutoEncoder_recon_all, AutoEncoder_recon_all, LSTM-ED_recon_all, TcnED, VAE-LSTM, MSCRED, OmniAnoAlgo">
+
+<button type="submit">Run anomaly detection</button>

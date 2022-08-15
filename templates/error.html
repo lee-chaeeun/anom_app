@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js”></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+  
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}   
+
+
+<body style="font-family:arial, sans-serif">
+
+    <h6><a href="/">Return to index page</a></h6>
+    <div id="results" class="results"></div>
+
+    <h1>{{header}}</h1>    
+    <div>{{description}}</div>
+    
+  <div class="chart" id="image">
+    <script>
+      Plotly.newPlot('image', {{ graphJSON | safe }}, {{ layout | safe }}, {{ config | 
+safe }});
+    </script>
+  </div>
+  
+    
+</body>
+
+</html>
+
+
+
