@@ -227,7 +227,7 @@ def results(dataset_name,algorithm_name,task_id):
     #graph og time series
     graphJSON = time_series(dataset_name,channel_name)
 
-    return render_template("plot.html", graphJSON=graphJSON, graphJSON1=graphJSON1, graphJSON2=graphJSON2, graphJSON3=graphJSON3, layout=layout, config=config, header = header, description = description, form = channel_numbers)     
+    return render_template("plot_realtime.html", graphJSON=graphJSON, graphJSON1=graphJSON1, graphJSON2=graphJSON2, graphJSON3=graphJSON3, layout=layout, config=config, header = header, description = description, form = channel_numbers)     
 
  
 #@app.route('/results/<dataset_name>/<algorithm_name>')    
