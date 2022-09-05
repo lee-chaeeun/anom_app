@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      
+</head>
+  
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}  
+
+<body>
+<body style="font-family:arial, sans-serif">
+
+    <h5><a href="/">Return to index page</a></h5>
+    
+    <h1>{{header}}</h1>
+    <div>{{description}}</div>
+     
+{% from "_formhelpers.html" import render_field %}
+
+<form method=post>
+  <dl>
+    {{ render_field(form.select) }}
+  </dl>
+  <p><input type=submit value=Choose>
+</form>   
+    
+  <div class="chart" id="image">
+    <script>
+      Plotly.newPlot('image', {{ graphJSON | safe }}, {{ layout | safe }}, {{ config | 
+safe }});
+    </script>
+  </div>    
+  
+  <div id="status">Success</div>
+
+  <div class="chart" id="image1">
+    <script>
+      Plotly.newPlot('image1', {{ graphJSON1 | safe }}, {{ layout | safe }}, {{ config | 
+safe }});
+    </script>
+  </div>
+  
+  <div class="chart" id="image2">
+    <script>
+      Plotly.newPlot('image2', {{ graphJSON2 | safe }}, {{ layout | safe }}, {{ config | 
+safe }});
+    </script>
+  </div>
+
+  <div class="chart" id="image3">
+    <script>      
+      Plotly.newPlot('image3', {{ graphJSON3 | safe }}, {{ layout | safe }}, {{ config | 
+safe }});
+    </script>
+  </div> 
+
+
+</script>
+                  
+</body>
+
+
+
+</html>
+
+
+

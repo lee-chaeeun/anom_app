@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style>  
+     
+title {
+	margin: 1em 0 0.5em 0;
+	font-weight: normal;
+	position: relative;
+	text-shadow: 0 -1px rgba(0,0,0,0.6);
+	font-size: 28px;
+	line-height: 40px;
+	background: #355681;
+	background: rgba(53,86,129, 0.8);
+	border: 1px solid #fff;
+	padding: 5px 15px;
+	color: white;
+	border-radius: 0 10px 0 10px;
+	box-shadow: inset 0 0 5px rgba(53,86,129, 0.5);
+	font-family: 'Muli', sans-serif;
+}
+     
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+     }
+
+td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+}
+
+tr:nth-child(even) {
+
+  background-color: #dddddd;
+
+}    
+    </style>
+    
+    <title>Anomaly Detection Flask Web Application</title>    
+    
+</head>
+
+
+
+
+<body>
+    <div class="content">       
+    <h1>Anomaly Detection Flask Web Application</h1>
+         <a href="https://github.com/lee-chaeeun/mvts-docker" title="Anomaly Detection on Time Series: An Evaluation of Deep Learning Methods">Github link to mvtsdocker</a>     
+    </div>
+
+    <div class="table">  
+ <table border = "1">
+  <tr>
+    <th>Dataset</th>
+    <th>Anomaly Detection algorithm</th>
+  </tr>
+  <tr>
+    <td>skab</td>
+    <td>Pca Reconstruction</td>
+  </tr>
+  <tr>
+    <td>smap</td>
+    <td>Univariate AutoEncoder Reconstruction</td>
+  </tr>
+  <tr>
+    <td>msl</td>
+    <td>AutoEncoder Reconstruction </</td>
+  </tr>
+  <tr>
+    <td>smd</td>
+    <td>LSTM-ED Reconstruction</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>TcnED</td>
+  </tr>      
+  <tr>
+    <td></td>
+    <td>VAE-LSTM</td>
+  </tr>      
+  <tr>
+    <td></td>
+    <td>MSCRED</td>
+  </tr>      
+  <tr>
+    <td></td>
+    <td>Omni Anomaly Algorithm</td>
+  </tr>          
+</table>        
+    </div>
+    
+    <div class="flash">           
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}   
+    </div>    
+
+</body>
+
+<form action="{{ url_for("user_input")}}" method="post">
+
+<select name="datasets_dropdown" method="GET" action="/">
+    {% for dataset_name in datasets_dropdown %}
+        <option value="{{dataset_name}}" SELECTED>{{dataset_name}}</option>"
+    {% endfor %}
+</select>
+
+<select name="algorithms_dropdown" method="GET" action="/">
+    {% for algorithm_name in algorithms_dropdown %}
+        <option value="{{algorithm_name}}" SELECTED>{{algorithm_name}}</option>"
+    {% endfor %}
+</select>
+
+<button type="submit">Run anomaly detection</button>
+</form>  
+
+
+
+
+

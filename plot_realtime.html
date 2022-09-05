@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Anomaly Detection</title>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script>
+  
+    $(document).ready(function () {
+    
+    graph_layout = {{ layout | safe }};
+    graph_config = {{ config | safe }};
+    
+    var source = new EventSource("/progress/");
+    
+    source.onmessage = function(event) {
+
+        received_data = JSON.parse(event.data);
+        status = received_data[1];
+        
+        graph1 = received_data[2];
+        graphJSON1 = JSON.parse(graph1);
+        
+        graph2 = received_data[3];
+        graphJSON2 = JSON.parse(graph2);        
+
+        graph3 = received_data[4];
+        graphJSON3 = JSON.parse(graph3);    
+                
+        console.log(received_data[1])              
+
+        var placeholder = $('#status');
+        placeholder.html(status);  
+    
+        var plotDiv1 = document.getElementById("image1")   
+        var plotDiv2 = document.getElementById("image2");  
+        var plotDiv3 = document.getElementById("image3");    
+        
+        Plotly.react(plotDiv1, graphJSON1, graph_layout, graph_config);     
+        Plotly.react(plotDiv2, graphJSON2, graph_layout, graph_config); 
+        Plotly.react(plotDiv3, graphJSON3, graph_layout, graph_config); 
+                               
+        if (status == "Sucess"){
+            console.log("Closing the SSE connection")
+            source.close() 
+            }                   
+        }        
+   
+    });
+    
+  </script>
+      
+</head>
+
+<body>
+<body style="font-family:arial, sans-serif">
+
+    <h5><a href="/">Return to index page</a></h5>
+    
+    <div id="results" class="results"></div>
+    
+    <h1>{{header}}</h1>
+    <div>{{description}}</div>
+     
+{% from "_formhelpers.html" import render_field %}
+
+<form method=post>
+  <dl>
+    {{ render_field(form.select) }}
+  </dl>
+  <p><input type=submit value=Choose>
+</form>   
+    
+  <div class="chart" id="image">
+    <script>
+      Plotly.newPlot('image', {{ graphJSON | safe }}, {{ layout | safe }}, {{ config | safe }});
+    </script>
+  </div>    
+
+  <div id="status"></div>
+
+  <div class="chart" id="image1">
+  </div>
+  
+  <div class="chart" id="image2">
+  </div>
+
+  <div class="chart" id="image3">
+  </div> 
+                  
+</body>
+
+
+
+</html>
+
+
+
