@@ -2,8 +2,8 @@
 The goal of this repository is to visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container. 
 ***Repository is still in production***
 
-The following files were added to plot real-time results on a flask server. 
-app.py
+The following files were added to plot real-time results on a flask server. \n
+app.py \n
 loading.py
 channel_classes.py
 plotting.py
