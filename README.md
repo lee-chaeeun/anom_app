@@ -1,6 +1,6 @@
+# Anomaly Detection on Time Series: An Evaluation of Deep Learning Methods
 
-## Containerized Anomaly Detection on Time Series Visualized on Web Server
-The goal of this repository is to visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container.
+The goal of this repository is to evaluate multivariate time-series anomaly detection algorithms on a common set of datasets discussed in the paper:
 
 A. Garg, W. Zhang, J. Samaran, R. Savitha and C. -S. Foo, "An Evaluation of Anomaly Detection and Diagnosis in Multivariate Time Series," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3105827.
 https://ieeexplore.ieee.org/document/9525836
@@ -105,25 +105,40 @@ Place the folder 'ServerMachineDataset' at the location <root-of-the-project>/da
 Put all the datasets in the data/raw/ directory. 
 
 ```bash
-git clone https://github.com/lee-chaeeun/mvts-docker.git
-conda env create --name mvtsenv --file=environments.yml
+git clone https://github.com/astha-chem/mvts-ano-eval.git
+conda create -n mvtsenv python=3.6
 source activate mvtsenv
 python3 -m pip3 install --user --upgrade pip
-
+pip install -r requirements.txt --user
 # based on your cuda version or use the cpu only version
 conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
 # cpu only
 # conda install pytorch==1.2.0 torchvision==0.4.0 cpuonly -c pytorch
 python3 setup.py install
 get_datasets.sh
-python3 run.py
+python3 main.py
+python3 metrics_expts.py
 ```
 
 
-
-## Credits
-This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 ## Authors/Contributors
 * [Astha Garg](https://github.com/astha-chem)
 * [Jules Samaran](https://github.com/jules-samaran)
 * [Wenyu Zhang](https://github.com/zwenyu)
+
+
+## Credits
+This repository is forked from https://github.com/KDD-OpenSource/DeepADoTS
+[Base implementation for AutoEncoder, LSTM-ED](https://github.com/KDD-OpenSource/DeepADoTS)
+[Base implementation for Omni-anomaly](https://github.com/NetManAIOps/OmniAnomaly)  
+[Base implementation for VAE-LSTM](https://github.com/TimyadNyda/Variational-Lstm-Autoencoder)
+[Base implementation for MSCRED 1](https://github.com/Zhang-Zhi-Jie/Pytorch-MSCRED) [Base implementation for MSCRED 2](https://github.com/SKvtun/MSCRED-Pytorch)
+[TCN module](https://github.com/locuslab/TCN)
+
+## Note
+The following algorithms have also been evaluated but could not be included in the repo at the moment as the original implementations lack a license:
+- DAGMM [original repo](https://github.com/danieltan07/dagmm)
+- BeatGAN [original repo](https://github.com/Vniex/BeatGAN)
+- OCAN [original repo](https://github.com/PanpanZheng/OCAN)
+- NASA LSTM [original repo](https://github.com/khundman/telemanom) (Apache 2.0 license which sets restrictions on sharing)
+
