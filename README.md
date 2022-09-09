@@ -61,9 +61,11 @@ set path: <root-of-the-project>/data/raw/swat/raw
 
 ### Wadi
 source: fill out following form from iTrust
-[form](https://docs.google.com/forms/d/e/1FAIpQLSfnbjv7ZnDNmV_5ge7OfUc_O_h5yUnj708TFL8dD3o3Yoj9Fw/viewform) 
+[form](https://docs.google.com/forms/d/e/1FAIpQLSfnbjv7ZnDNmV_5ge7OfUc_O_h5yUnj708TFL8dD3o3Yoj9Fw/viewform)
 take csv tables in 02_WADI Dataset_19 Nov 2017 folder
+
 rename anomalies file to WADI_anomalies
+
 set path: <root-of-the-project>/data/raw/wadi/raw
 
 ### Future development, Room for improvement 
