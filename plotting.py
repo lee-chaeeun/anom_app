@@ -13,7 +13,7 @@ import json
 import pickle
 
 
-from timeseries_plot import plot_skab, plot_smap, plot_msl, plot_smd 
+from timeseries_plot import plot_skab, plot_smap, plot_msl, plot_smd, plot_swat, plot_wadi, plot_damadics 
 
 from loading import load_result, retrieve_predictions
 
@@ -36,8 +36,14 @@ def time_series(dataset_name,channel_name):
     elif dataset_name == 'msl':
         graphJSON = plot_msl(channel_name)
     elif dataset_name == 'smd':
-        graphJSON = plot_smd(channel_name)        
-            
+        graphJSON = plot_smd(channel_name)  
+    elif dataset_name == 'swat':
+        graphJSON = plot_swat()       
+    elif dataset_name == 'wadi':
+        graphJSON = plot_wadi()                                
+    elif dataset_name == 'damadics-s':
+        graphJSON = plot_damadics()     
+                    
     return graphJSON    
 
 def anomaly_scores(dataset_name,raw_predictions):
@@ -172,3 +178,4 @@ def retrieve_graphs_final(dataset_name,algorithm_name, channel_name):
     return graphJSON1, graphJSON2, graphJSON3 
 
 
+    
