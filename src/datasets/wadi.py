@@ -6,6 +6,7 @@ from src.datasets import Dataset
 from sklearn.metrics import roc_auc_score
 """
 @author: Astha Garg 10/19
+09/09/22 code edited to fit running_algorithm from app.py
 """
 
 
@@ -18,12 +19,9 @@ class Wadi(Dataset):
          set to same as dataset name for single entity datasets
         """
         super().__init__(name="wadi", file_name="WADI_14days.csv")
-        self.raw_path_train = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                           "data", "raw", "wadi", "raw", "WADI_14days.csv")
-        self.raw_path_test = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                          "data", "raw", "wadi", "raw", "WADI_attackdata.csv")
-        self.anomalies_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                           "data", "raw", "wadi", "raw", "WADI_anomalies.csv")
+        self.raw_path_train = os.path.join(os.getcwd(),"data", "raw", "wadi", "raw", "WADI_14days.csv")
+        self.raw_path_test = os.path.join(os.getcwd(),"data", "raw", "wadi", "raw", "WADI_attackdata.csv")
+        self.anomalies_path = os.path.join(os.getcwd(),"data", "raw", "wadi", "raw", "WADI_anomalies.csv")
         self.seed = seed
         self.remove_unique = remove_unique
         self.verbose = verbose
@@ -51,6 +49,7 @@ class Wadi(Dataset):
         train_df["y"] = np.zeros(train_df.shape[0])
         test_df["y"] = np.zeros(test_df.shape[0])
         causes = []
+        
         for i in range(ano_df.shape[0]):
             ano = ano_df.iloc[i, :][["Start_time", "End_time", "Date"]]
             start_row = np.where((test_df["Time"].values == ano["Start_time"]) &
@@ -58,7 +57,8 @@ class Wadi(Dataset):
             end_row = np.where((test_df["Time"].values == ano["End_time"]) &
                                (test_df["Date"].values == ano["Date"]))[0][0]
             test_df["y"].iloc[start_row:(end_row + 1)] = np.ones(1 + end_row - start_row)
-            causes.append(ano_df.iloc[i, :]["Causes"])
+            #causes.append(ano_df.iloc[i, :]["Causes"])
+            
         # Removing time and date from features
         train_df = train_df.drop(["Time", "Date", "Row"], axis=1)
         test_df = test_df.drop(["Time", "Date", "Row"], axis=1)
@@ -77,28 +77,6 @@ class Wadi(Dataset):
 
         X_train, y_train, X_test, y_test = self.format_data(train_df, test_df, OUTLIER_CLASS, verbose=self.verbose)
         X_train, X_test = Dataset.standardize(X_train, X_test, remove=self.remove_unique, verbose=self.verbose)
-
-        matching_col_names = np.array([col.split("_1hot")[0] for col in train_df.columns])
-        self.causes = []
-        for event in causes:
-            event_causes = []
-            for chan_name in get_chan_name(event):
-                event_causes.extend(np.argwhere(chan_name == matching_col_names).ravel())
-            self.causes.append(event_causes)
-
-        self.visible_causes = [[5, 6, 10, 14, 16, "105"], [6, "9", "13", 14, 16, "18", "21", "40", 49, 55, 61, 68, 102],
-                               [1, 5, 6, "9", 14, 16, 23, 25, 26, 29, 35, "37", 43, 47, 51, 63, 67], [24, 27, 30, 33,
-                                                                                                      36, 40, 63, 64,
-                                                                                                      65, 66, 67, 68,
-                                                                                                      82, 84, 86, 87,
-                                                                                                      89, 90, 91, 104],
-                               [9, 18, 20, 22, 25, 39, 40, 42, 43, "61", 86, 87, 89, 90, 91, 102], [1, 2, 3, 6, 11, 12,
-                                                                                                    14, 16, 23, 26, 29,
-                                                                                                    32, 35, 38],
-                               [62, 110], [19, 39], [1, 2, 3, 4, 5, 6, 10, 14, 16, 18, 39, 71], ["18", "39", 62, "71",
-                                                                                                 86, 100, 110, 111],
-                               [29, 32, 35, 38, "40", 62, 98, 99, 110, 111], [88, 123], [14, 16, 33, 56, 110, 111],
-                               [1, 3, 6, 14, 16, 61, 101, 103]]
 
         self._data = tuple([X_train, y_train, X_test, y_test])
 
@@ -120,11 +98,11 @@ def main():
     seed = 0
     wadi = Wadi(seed=seed)
     x_train, y_train, x_test, y_test = wadi.data()
-    print(wadi.causes)
-    # model = AutoEncoder(sequence_length=30, num_epochs=5, hidden_size=15, lr=1e-4, gpu=0)
-    # model.fit(x_train)
-    # error = model.predict(x_test)
-    # print(roc_auc_score(y_test, error))  # e.g. 0.8614
+    #print(wadi.causes)
+    model = AutoEncoder(sequence_length=30, num_epochs=5, hidden_size=15, lr=1e-4, gpu=0)
+    model.fit(x_train)
+    error = model.predict(x_test)
+    print(roc_auc_score(y_test, error))  # e.g. 0.8614
 
 
 if __name__ == '__main__':
