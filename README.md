@@ -1,4 +1,4 @@
-## Containerized Anomaly Detection on Time Series Visualized on Web Server
+## Containerized Anomaly Detection on Time Series Visualized on Flask Web Server
 The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container. 
 
 ***Repository is still in production***
