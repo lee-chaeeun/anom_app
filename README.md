@@ -66,7 +66,7 @@ take csv tables in 02_WADI Dataset_19 Nov 2017 folder
 rename anomalies file to WADI_anomalies
 set path: <root-of-the-project>/data/raw/wadi/raw
 
-###Future development, Room for improvement 
+### Future development, Room for improvement 
 
 System run on: 
 
