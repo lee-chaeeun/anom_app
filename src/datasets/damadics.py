@@ -6,6 +6,7 @@ from src.datasets import Dataset
 from sklearn.metrics import roc_auc_score
 """
 @author: Astha Garg 10/19
+09/09/22 code edited to fit running_algorithm from app.py
 """
 
 
@@ -25,12 +26,10 @@ class Damadics(Dataset):
         train_filenames = ["31102001.txt"] + ["0"+str(i) + "112001.txt" for i in range(1, 9)]
         test_filenames = ["09112001.txt", "17112001.txt", "20112001.txt"]
         self.test_dates = [date[:-4] for date in test_filenames] # will be used to add labels to dataframes
-        self.raw_paths_train = [os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                           "data", "raw", "damadics", "raw", filename) for filename in train_filenames]
-        self.raw_paths_test = [os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        self.raw_paths_train = [os.path.join(os.getcwd(), "data", "raw", "damadics", "raw", filename) for filename in train_filenames]
+        self.raw_paths_test = [os.path.join(os.getcwd(),
                                            "data", "raw", "damadics", "raw", filename) for filename in test_filenames]
-        self.anomalies_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                           "data", "raw", "damadics", "raw", "DAMADICS_anomalies.csv")
+        self.anomalies_path = os.path.join(os.getcwd(), "data", "raw", "damadics", "raw", "DAMADICS_anomalies.csv")
         self.seed = seed
         self.remove_unique = remove_unique
         self.verbose = verbose
@@ -62,9 +61,12 @@ class Damadics(Dataset):
             test_dataframes[df_idx]["y"].iloc[start_row:(end_row + 1)] = np.ones(1 + end_row - start_row)
         train_df: pd.DataFrame = pd.concat(train_dataframes, axis=0, ignore_index=True)
         test_df: pd.DataFrame = pd.concat(test_dataframes, axis=0, ignore_index=True)
-        train_df["y"] = np.zeros(train_df.shape[0])
+        
+        train_df["y"] = np.zeros(train_df.shape[0])        
+       
         # Removing the timestamp from the features
-        self.transitions = np.argwhere(test_df.iloc[:, 0] == 0)[1:].ravel()
+        self.transitions = np.argwhere(test_df.index == 0)[1:].ravel()        
+
         train_df = train_df.iloc[:, 1:]
         test_df = test_df.iloc[:, 1:]
 
@@ -82,6 +84,8 @@ class Damadics(Dataset):
         self.causes = [[4, 5, 6], [4, 5, 6], [4, 5, 6], [26, 27, 28], [26, 27, 28], [16, 17], [16, 17], [4, 5, 6],
                        [19, 20, 21], [19, 20, 21], [4, 5, 6], [19, 20, 21], [25, 26, 27, 28], [25, 26, 27, 28],
                        [25, 26, 27, 28], [1, 2, 3], [16]]
+                           
+                           
 
     def get_root_causes(self):
         return self.causes
