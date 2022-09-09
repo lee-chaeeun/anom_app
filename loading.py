@@ -1,4 +1,5 @@
 import os, datetime, operator, time, pickle
+import numpy as np
 from datetime import datetime
 
 def newest(directory):
@@ -39,19 +40,21 @@ def retrieve_predictions(dataset_name,algorithm_name, channel_name, c_time):
         #anomaly scores 
         with open(os.path.join(resultpath, "raw_predictions"),'rb') as file:
            raw_predictions = pickle.load(file)
-
-        d_time = datetime.fromtimestamp(os.path.getctime(resultpath))   
-        print("data created:",d_time,"\n","code started:", c_time)     
-        
-        if d_time < c_time: 
-            print("not yet time, my young grasshopper")
-            d_flag = False
-        else: 
-            print("raw predictions available")
-            d_flag = True    
            
     except Exception as e:    
         print(e)  
         raw_predictions =  np.zeros(1)
+        
+    d_time = datetime.fromtimestamp(os.path.getctime(resultpath))   
+    print("data created:",d_time,"\n","code started:", c_time)     
+        
+    if d_time < c_time: 
+        print("not yet time, my young grasshopper")
+        raw_predictions =  np.zeros(1)
+        ground_raw_predictions = np.zeros(1)
+        d_flag = False
+    else: 
+        print("raw predictions available")
+        d_flag = True         
         
     return ground_raw_predictions, raw_predictions, d_flag
