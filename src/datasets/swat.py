@@ -6,6 +6,7 @@ from src.datasets import Dataset
 from sklearn.metrics import roc_auc_score
 """
 @author: Astha Garg 10/19
+09/09/22 code edited to fit running_algorithm from app.py
 """
 
 
@@ -22,14 +23,14 @@ class Swat(Dataset):
         else:
             name = "swat-long"
         super().__init__(name=name, file_name="SWaT_Dataset_Normal_v1.csv")
-        root = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                                           "data", "raw", "swat", "raw")
+        root = os.path.join(os.getcwd(),"data", "raw", "swat", "raw")
         self.raw_path_train = os.path.join(root, "SWaT_Dataset_Normal_v1.csv")
         self.raw_path_test = os.path.join(root, "SWaT_Dataset_Attack_v0.csv")
 
         if not os.path.isfile(self.raw_path_train):
             df = pd.read_excel(os.path.join(root, "SWaT_Dataset_Normal_v1.xlsx"))
             df.to_csv(self.raw_path_train, index=False)
+            
         if not os.path.isfile(self.raw_path_test):
             df = pd.read_excel(os.path.join(root, "SWaT_Dataset_Attack_v0.xlsx"))
             df.to_csv(self.raw_path_test, index=False)
@@ -43,8 +44,10 @@ class Swat(Dataset):
     def load(self):
         # 1 is the outlier, all other digits are normal
         OUTLIER_CLASS = 1
-        test_df: pd.DataFrame = pd.read_csv(self.raw_path_test)
-        train_df: pd.DataFrame = pd.read_csv(self.raw_path_train)
+        
+        #skip first row because it is empty
+        test_df: pd.DataFrame = pd.read_csv(self.raw_path_test, skiprows = 1)
+        train_df: pd.DataFrame = pd.read_csv(self.raw_path_train, skiprows = 1)
 
         train_df = train_df.rename(columns={col: col.strip() for col in train_df.columns})
         test_df = test_df.rename(columns={col: col.strip() for col in test_df.columns})
