@@ -64,9 +64,10 @@ socketio = SocketIO(app, async_mode=ASYNC_MODE, cors_allowed_origins="*", logger
 
 #-------------------------------
 # Configuration of the application.
-# num_bars: number of progress bars to render
-# prog_inc: how mcuh the progress bar increases per update
-# update_rate: how frequently to update the progress bar, in seconds
+# flag: to tell if algorithm has finished producing predictions or not
+# dataset_name
+# algorithm_name
+# c_time: time code has started to run to compare with d_time, time predictions are done. 
 #-------------------------------
 class Config: 
     flag = False   
@@ -158,10 +159,10 @@ def user_input():
            print(e)
            return redirect(url_for('error', dataset_name = dataset_name, algorithm_name = algorithm_name)) 
            
-    datasets_dropdown = ['msl', 'smap', 'smd', 'skab'] #wadi, swat, dadamics 
+    datasets_dropdown = ['msl', 'smap', 'smd', 'skab', 'swat', 'wadi', 'damadics-s']  
     algorithms_dropdown = ['PcaRecons', 'UnivarAutoEncoder_recon_all', 'AutoEncoder_recon_all', 'LSTM-ED_recon_all', 'TcnED', 'VAE-LSTM', 'MSCRED', 'OmniAnoAlgo']
        
-    return render_template("form.html", datasets_dropdown = datasets_dropdown, algorithms_dropdown = algorithms_dropdown)
+    return render_template("index.html", datasets_dropdown = datasets_dropdown, algorithms_dropdown = algorithms_dropdown)
     
 
  
@@ -200,7 +201,8 @@ def progress():
         algorithm_name = app_cfg.algorithm_name     
         channel_numbers, channel_name = get_channel_info(dataset_name)    
         update_rate = 5
-        ret_dict = {}      
+        ret_dict = {} 
+        d_flag = False      
                        
         while app_cfg.flag != True :       
           
@@ -253,5 +255,4 @@ if __name__ == "__main__":
 
     app.run(host='0.0.0.0', port=5000, debug=False)   
     
-
 
