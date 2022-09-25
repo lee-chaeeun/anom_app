@@ -7,6 +7,7 @@ def newest(directory):
     all_subdirs = [os.path.join(directory,basename) for basename in files if os.path.isdir(os.path.join(directory,basename))]
     newest = max(all_subdirs, key = os.path.getctime)
     return newest
+
     
 def load_result(data_name, algo_name):
     out_dir_root = os.path.join(os.getcwd(), "reports", "trial") 
@@ -22,6 +23,8 @@ def load_result(data_name, algo_name):
     return entity_path   
     
 def retrieve_predictions(dataset_name,algorithm_name, channel_name, c_time):
+     
+    resultpath = os.getcwd()
                        
     try: 
         #load Raw Base Signal for ground truth      
