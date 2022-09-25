@@ -76,7 +76,11 @@ set path: <root-of-the-project>/data/raw/wadi/raw
 ###Future development, Room for improvement 
 
 System run on: 
-
+  
+NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7   
+  
+NVDIDIA GeForce GTX 750 Ti with 2048 MB
+ 
 Future systems should run on a GPU with higher RAM (maybe 8GB), CPU with storage around 300GB for dataset and results storage. 
 * current system was not able to process code for SWaT and WADI. Therefore, testing was not sufficient, though dataframes produced to exhibit graph information were successfully received as output. 
 * Current system is also unable to process UAE, with terminal being killed in the process of running, with no error. 
