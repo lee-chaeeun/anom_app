@@ -9,6 +9,8 @@ The following files were added to plot real-time results on a flask server.
 * channel_classes.py
 * plotting.py
 * timeseries_plot.py
+* dockerfile
+* entrypoint.sh
 
 The respective templates to the flask code are located in the templates folder. 
 * form.html
