@@ -423,7 +423,7 @@ def plot_smap(channel_name):
     smap = Smap_entity(seed=seed, remove_unique=False, entity = entity)
     test_df = smap.data()
   
-    title = 'Original Time Series Plot of SMAP'  + entity  
+    title = 'Original Time Series Plot of SMAP '  + entity  
     fig = px.line(test_df, x = test_df.index, y = list(test_df.columns), width=1000, height=500, title=title)
     #fig_json = fig.to_json()
     #fig.show()
