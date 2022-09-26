@@ -1,5 +1,5 @@
 ## Containerized Anomaly Detection on Time Series Visualized on Web Server
-The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container. 
+The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container.
 
 ***Repository is still in production***
 
@@ -11,7 +11,7 @@ The following files were added to plot real-time results on a flask server.
 * timeseries_plot.py
 * dockerfile
 * entrypoint.sh
-* environment.yml (must edit prefix to show anaconda path of user pc)
+* environment.yml
 
 The respective templates to the flask code are located in the templates folder. 
 * form.html
@@ -25,19 +25,75 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 * damadics.py
 * swat.py
 
+### Instructions to run Docker
+
+1. In the last line of environment.yml, edit prefix to show anaconda path of user pc.
+
+2. Add datasets not included in this repository to respective paths listed below. 
+
+3. Run following bash in terminal.
+
+```bash
+git clone https://github.com/lee-chaeeun/mvts-docker.git
+docker build -t anom_app:latest .
+docker run --gpus all -d -p 5000:5000 anomdetapp:latest
+```
+***Tips for debugging in future production***
+
+Show error or logs of docker after running 
+`docker logs <container number>`
+
+Show active docker containers 
+`docker ps`
+
+Show all active and non-active docker containers 
+`docker ps -a`
+
+Stop active docker container 
+`docker container stop your_container_id`
+
+Options to try if docker container is not stopping and an error exists
+`sudo docker container kill`
+`sudo systemctl restart docker.socket docker.service`
+
+Fix if there is an "already in use" error for port
+`sudo netstat -pna | grep 5000`
+`sudo kill <process id>`
+
+Delete all containers and images 
+`sudo docker image prune -a --force --filter "until=2022-10-07T10:00:00"`
+`sudo docker system prune -a`
+
+### Instructions to run in Conda enviornment 
+
+1. Run following bash code in terminal 
+
 ```bash
 git clone https://github.com/lee-chaeeun/mvts-docker.git
 conda env create -f environment.yml
 source activate mvtsenvs
+python3 -m pip3 install --user --upgrade pip
+# based on your cuda version or use the cpu only version
+conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
+# cpu only
+# conda install pytorch==1.2.0 torchvision==0.4.0 cpuonly -c pytorch
 python3 setup.py install
 get_datasets.sh
+```
+2. Add datasets not included in this repository to respective paths listed below.
+
+```bash
 python3 app.py
 ```
+***Tips for debugging in future production***
+This option is more volatile compared to running docker; one must pay careful attention to version mismatches in environment of each package. 
+
+
 
 ## Credits
 This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 
-### Datasets
+## Datasets
 
 ### Skab
 source: [website](https://www.kaggle.com/yuriykatser/skoltech-anomaly-benchmark-skab/version/1)
@@ -45,7 +101,7 @@ set path: <root-of-the-project>/data/raw/skab
 
 ### Smap and Msl
 
-source: 
+source:
 ```bash
 wget https://s3-us-west-2.amazonaws.com/telemanom/data.zip && unzip data.zip && rm data.zip
 cd data && wget https://raw.githubusercontent.com/khundman/telemanom/master/labeled_anomalies.csv
