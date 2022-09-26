@@ -1,4 +1,4 @@
-## Containerized Anomaly Detection on Time Series Visualized on Web Server
+# Containerized Anomaly Detection on Time Series Visualized on Web Server
 The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container.
 
 ***Repository is still in production***
@@ -25,11 +25,17 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 * damadics.py
 * swat.py
 
-### Instructions to run Docker
+**Table of Contents**
+
+[TOC]
+
+## Instructions to run
+
+### Run AnomApp in Docker
 
 1. In the last line of environment.yml, edit prefix to show anaconda path of user pc.
 
-2. Add datasets not included in this repository to respective paths listed below. 
+2. Add datasets not included in this repository to respective paths listed below. [Datasets](https://github.com/anom_app/README.md "Datasets")
 
 3. Run following bash in terminal.
 
@@ -64,7 +70,7 @@ Delete all containers and images
 `sudo docker image prune -a --force --filter "until=2022-10-07T10:00:00"`
 `sudo docker system prune -a`
 
-### Instructions to run in Conda enviornment 
+### Run AnomApp in Conda environment 
 
 1. Run following bash code in terminal 
 
@@ -80,18 +86,13 @@ conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch
 python3 setup.py install
 get_datasets.sh
 ```
-2. Add datasets not included in this repository to respective paths listed below.
+2. Add datasets not included in this repository to respective paths listed below. [Datasets](https://github.com/anom_app/README.md "Datasets")
 
 ```bash
 python3 app.py
 ```
 ***Tips for debugging in future production***
 This option is more volatile compared to running docker; one must pay careful attention to version mismatches in environment of each package. 
-
-
-
-## Credits
-This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 
 ## Datasets
 
@@ -130,7 +131,7 @@ take csv tables in 02_WADI Dataset_19 Nov 2017 folder
 rename anomalies file to WADI_anomalies
 set path: <root-of-the-project>/data/raw/wadi/raw
 
-### Future development, Room for improvement 
+## Future development, Room for improvement 
 
 System run on: 
   
@@ -147,4 +148,6 @@ Real-time detection responses can be improved by taking information bit by bit a
 More plots could be added to display fscore and other metrics to compare different algorithms and their performance on the respective datasets. 
 
 
+## Credits
+This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 
