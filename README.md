@@ -11,6 +11,7 @@ The following files were added to plot real-time results on a flask server.
 * timeseries_plot.py
 * dockerfile
 * entrypoint.sh
+* environment.yml (must edit prefix to show anaconda path of user pc)
 
 The respective templates to the flask code are located in the templates folder. 
 * form.html
