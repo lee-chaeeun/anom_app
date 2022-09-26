@@ -91,4 +91,4 @@ dependencies:
     - git+https://github.com/haowen-xu/tfsnippet.git
     - tfp-nightly    
     - WTForms==3.0.0
-prefix: /home/bitchae/anaconda3/envs/myenv
+prefix: /home/bit_chae/anaconda3/envs/myenv
