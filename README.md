@@ -31,7 +31,7 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 1. [Usage](https://github.com/anom_app/README.md "Usage")
 
-  *  [AnomApp Deployment in Docker](https://github.com/anom_app/README.md "AnomApp Deployment in Docker")
+>  *  [AnomApp Deployment in Docker](https://github.com/anom_app/README.md "AnomApp Deployment in Docker")
   *  [AnomApp in Conda environment](https://github.com/anom_app/README.md "Run AnomApp in Conda environment")  
 
 2. [Datasets](https://github.com/anom_app/README.md "Datasets")
