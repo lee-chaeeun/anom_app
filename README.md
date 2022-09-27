@@ -36,7 +36,7 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 2. [Datasets](https://github.com/anom_app/README.md "Datasets")
 
-3. [AnomApp Algorithm](https://github.com/anom_app/README.md "AnomApp Algorithm"])  
+3. [AnomApp Algorithm](https://github.com/anom_app/README.md "AnomApp Algorithm") 
 
 3.  [Example](https://github.com/anom_app/README.md "Example")
 
