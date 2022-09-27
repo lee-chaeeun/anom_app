@@ -29,22 +29,22 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 **Table of Contents**
 
-1. [Usage](https://github.com/anom_app/README.md "Usage")
+1. [Usage](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#usage)
 
-   *  [AnomApp Deployment in Docker](https://github.com/anom_app/README.md "AnomApp Deployment in Docker")
-   *  [AnomApp in Conda environment](https://github.com/anom_app/README.md "Run AnomApp in Conda environment")  
+   *  [AnomApp Deployment in Docker](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#anomapp-deployment-in-docker)
+   *  [AnomApp in Conda environment](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#run-anomapp-in-conda-environment)  
 
-2. [Datasets](https://github.com/anom_app/README.md "Datasets")
+2. [Datasets](https://github.com/anom_app/#datasets)
 
-3. [AnomApp Algorithm](https://github.com/anom_app/README.md "AnomApp Algorithm") 
+3. [AnomApp Algorithm](https://github.com/anom_app/#anomapp-algorithm) 
 
-3.  [Example](https://github.com/anom_app/README.md "Example")
+3.  [Example](https://github.com/anom_app/#example)
 
-4.  [Future development, Room for improvement ](https://github.com/anom_app/README.md "Future development, Room for improvement ")
+4.  [Future development, Room for improvement ](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#future-development-room-for-improvement)
 
 5. [Credits](https://github.com/anom_app/README.md "Credits")
 
-   *  [Anomaly Detection Evaluation](https://github.com/anom_app/README.md "Anomaly Detection Evaluation")
+   *  [Anomaly Detection Evaluation](https://github.com/anom_app/#anomaly-detection-evaluation")
    *  [Anomaly Detection Algorithms](https://github.com/lee-chaeeun/anom_app#anomaly-detection-algorithms)
 
 
