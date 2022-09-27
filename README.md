@@ -31,8 +31,8 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 1. [Usage](https://github.com/anom_app/README.md "Usage")
 
->  *  [AnomApp Deployment in Docker](https://github.com/anom_app/README.md "AnomApp Deployment in Docker")
->  *  [AnomApp in Conda environment](https://github.com/anom_app/README.md "Run AnomApp in Conda environment")  
+   *  [AnomApp Deployment in Docker](https://github.com/anom_app/README.md "AnomApp Deployment in Docker")
+   *  [AnomApp in Conda environment](https://github.com/anom_app/README.md "Run AnomApp in Conda environment")  
 
 2. [Datasets](https://github.com/anom_app/README.md "Datasets")
 
@@ -44,8 +44,8 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 5. [Credits](https://github.com/anom_app/README.md "Credits")
 
->  *  [Anomaly Detection Evaluation](https://github.com/anom_app/README.md "Anomaly Detection Evaluation")
->  *  [Anomaly Detection Algorithms](https://github.com/anom_app/README.md "Anomaly Detection Algorithms")
+   *  [Anomaly Detection Evaluation](https://github.com/anom_app/README.md "Anomaly Detection Evaluation")
+   *  [Anomaly Detection Algorithms](https://github.com/anom_app/README.md "Anomaly Detection Algorithms")
 
 
 ## Usage
