@@ -45,7 +45,7 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 5. [Credits](https://github.com/anom_app/README.md "Credits")
 
    *  [Anomaly Detection Evaluation](https://github.com/anom_app/README.md "Anomaly Detection Evaluation")
-   *  [Anomaly Detection Algorithms](https://github.com/anom_app/README.md "Anomaly Detection Algorithms")
+   *  [Anomaly Detection Algorithms](https://github.com/lee-chaeeun/anom_app#anomaly-detection-algorithms)
 
 
 ## Usage
