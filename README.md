@@ -34,11 +34,11 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
    *  [AnomApp Deployment in Docker](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#anomapp-deployment-in-docker)
    *  [AnomApp in Conda environment](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#run-anomapp-in-conda-environment)  
 
-2. [Datasets](https://github.com/anom_app/#datasets)
+2. [Datasets](https://github.com/anom_app/blob/main/README.md#datasets)
 
-3. [AnomApp Algorithm](https://github.com/anom_app/#anomapp-algorithm) 
+3. [AnomApp Algorithm](https://github.com/anom_app/blob/main/README.md#anomapp-algorithm) 
 
-3.  [Example](https://github.com/anom_app/#example)
+3.  [Example](https://github.com/anom_app/blob/main/README.md#example)
 
 4.  [Future development, Room for improvement ](https://github.com/lee-chaeeun/anom_app/blob/main/README.md#future-development-room-for-improvement)
 
