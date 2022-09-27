@@ -163,6 +163,8 @@ set path: <root-of-the-project>/data/raw/wadi/raw
 
 ## AnomApp Algorithm
 
+## Example
+
 ## Closing
 
 ### Future development, Room for improvement
@@ -190,7 +192,7 @@ This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 ### Anomaly Detection Algorithms
 
 #### PCA Reconstruction
-
+<p>Used for lossy reconstruction </p>  
 <p>S. Li and J. Wen, “A model-based fault detection and diagnostic methodology based on pca method and wavelet transform,” Energy and Buildings, vol. 68, pp. 63–71, 2014</p>
 
 #### Univariate AutoEnconder based Reconstruction
