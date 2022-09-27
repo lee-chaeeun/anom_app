@@ -187,9 +187,10 @@ More plots could be added to display fscore and other metrics to compare differe
 ## Credits
 
 ### Anomaly Detection Evaluation
-This repository is forked from https://github.com/astha-chem/mvts-ano-eval
+The above repository of AnomApp is forked from https://github.com/astha-chem/mvts-ano-eval
 
-### Anomaly Detection Algorithms
+### Anomaly Detection Algorithms 
+All algorithms used in AnomApp are forked from https://github.com/astha-chem/mvts-ano-eval, which uses the the following algorithms with modifications in certain cases. 
 
 #### PCA Reconstruction
 <p>Used for lossy reconstruction </p>  
@@ -208,7 +209,7 @@ This repository is forked from https://github.com/astha-chem/mvts-ano-eval
 <p>P. Malhotra, A. Ramakrishnan, G. Anand, L. Vig, P. Agarwal, and G. Shroff, “Lstm-based encoder-decoder for multi-sensor anomaly detection,” arXiv preprint arXiv:1607.00148, 2016.</p>
 
 #### TcnED 
-<p>based on work from<p/> 
+<p>based on work from following paper<p/> 
 <p> S. Bai, J. Z. Kolter, and V. Koltun, “An empirical evaluation of generic convolutional and recurrent networks for sequence modeling,” arXiv preprint arXiv:1803.01271, 2018.</p>
 
 #### VAE-LSTM 
