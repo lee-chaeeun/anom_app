@@ -1,5 +1,5 @@
 # Containerized Anomaly Detection on Time Series Visualized on Web Server
-The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container.
+The goal of this repository is to real-time visualize results of multivariate time-series anomaly detection algorithms discussed in the paper on a python flask web server and to deploy the server in a docker container. The anomaly detection application will be referred to in the following as "AnomApp."
 
 ***Repository is still in production***
 
@@ -47,27 +47,37 @@ docker run --gpus all -d -p 5000:5000 anomdetapp:latest
 ***Tips for debugging in future production***
 
 Show error or logs of docker after running 
+
 `docker logs <container number>`
 
 Show active docker containers 
+
 `docker ps`
 
 Show all active and non-active docker containers 
+
 `docker ps -a`
 
 Stop active docker container 
+
 `docker container stop your_container_id`
 
 Options to try if docker container is not stopping and an error exists
+
 `sudo docker container kill`
+
 `sudo systemctl restart docker.socket docker.service`
 
 Fix if there is an "already in use" error for port
+
 `sudo netstat -pna | grep 5000`
+
 `sudo kill <process id>`
 
 Delete all containers and images 
+
 `sudo docker image prune -a --force --filter "until=2022-10-07T10:00:00"`
+
 `sudo docker system prune -a`
 
 ### Run AnomApp in Conda environment 
