@@ -1,6 +1,6 @@
+#for FLASK APP and BACKGROUND TASK
 import flask
 from flask import Flask,render_template,request, flash, redirect, url_for, request, Response, stream_with_context
-from flask_socketio import SocketIO, emit
 import requests
 from flask_executor import Executor
 
@@ -22,12 +22,6 @@ import pathlib
 import logging
 import datetime, operator, time
 from datetime import datetime
-
-#for MULTI-THREADING
-from threading import Thread, Timer
-import threading as th
-from queue import Queue
-import eventlet
 
 #to RUN ANOMALY DETECTION 
 from configs import get_best_config
@@ -54,13 +48,6 @@ app.config['EXECUTOR_PROPAGATE_EXCEPTIONS'] = True
 
 executor = Executor(app)
 
-# Set this variable to "threading", "eventlet" or "gevent" to test the
-# different async modes, or leave it set to None for the application to choose
-# the best option based on installed packages.
-ASYNC_MODE = None
-#IO_NAMESPACE = '/test'
-
-socketio = SocketIO(app, async_mode=ASYNC_MODE, cors_allowed_origins="*", logger=True, engineio_logger=False, always_connect=True)
 
 #-------------------------------
 # Configuration of the application.
