@@ -162,6 +162,7 @@ rename anomalies file to WADI_anomalies
 set path: <root-of-the-project>/data/raw/wadi/raw
 
 ## AnomApp Algorithm
+![Flowchart of Anomaly Detection Application Dataflow](flowchart.png)
 
 ## Example
 
