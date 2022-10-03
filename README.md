@@ -55,7 +55,7 @@ The following src.dataset code was slightly edited to fit run_algorithm in app.p
 
 1. In the last line of environment.yml, edit prefix to show anaconda path of user pc.
 
-2. Add datasets not included in this repository to respective paths listed below. [Datasets](https://github.com/anom_dapp/README.md "Datasets")
+2. Add datasets not included in this repository to respective paths listed below. [Datasets](https://github.com/lee-chaeeun/anom_dapp/blob/main/README.md#datasets)
 
 3. Run following bash in terminal.
 
@@ -66,8 +66,9 @@ docker run --gpus all -d -p 5000:5000 anomdetapp:latest
 ```
 After building docker, an example output can be observed as such, using the `docker images` command. 
 ![dockerimages](/example/dockerimages.png)
+
 After executing the run command, the terminal should respond with an output similar to the following. 
-![dockerrunning](/example/dockerrunning.png)
+![dockerrunning](/example/dockerrun.png)
 
 ***Tips for debugging in future production***
 
@@ -168,7 +169,7 @@ rename anomalies file to WADI_anomalies
 set path: \<root-of-the-project>/data/raw/wadi/raw
 
 ## AnomDApp Algorithm
-![Flowchart of Dataflow in AnomDApp](flowchart.png)
+![Flowchart of Dataflow in AnomDApp](/example/flowchart.png)
 
 ### Server
 The Flask-based web server is shown in light blue. [Flask](https://flask.palletsprojects.com/en/2.2.x/) is a micro web framework used to allow ease in development of a web server, without requiring other tools or libraries. Although it is not viable as is developed in this repository in production, it is a lightweight server that allows for quick development. Furthermore, It is regularly maintained by the "[Pallets](https://palletsprojects.com/)" community. 
@@ -195,21 +196,19 @@ Then, the background task outputs "True", once the algorithm has run successfull
 Once the web application page is rendered, the user may click "Return to Index page" to return to the front page of the web application. Furthermore, in the case that the user is running a dataset which has multiple channels, the different channel outputs can be observed at any time during the running of the chosen algorithm by using the dropdown menu bar provided on the upper left-hand corner of the results page. Clicking "Return to Index page" does not abruptly end the asynchronous running of the algorithm. To kill the asynchronous task, the user may either have to kill or stop the docker container or restart docker services. The option was not added to limit the control in the program managed by a global class. 
 
 ## Example
-Demo videos of running Skab, MSL, and SMAP on an Autoencoder as well as example of AnomDApp are provided in the example folder. The frontpage of AnomDApp is shown in the following. 
+Demo videos of running MSL on Autoencoder based reconstruction and SMAP on VAE-LSTM are provided in the example folder to exemplify the workings of application. The frontpage of AnomDApp is shown in the following. 
 ![frontpage](/example/frontpage.png)
 Here the user can use a dropdown menu bar to enter the desired dataset and anomaly detection algorithm. 
 
 If the user were to choose SMAP running on VAE-LSTM, the original time series of one channel of SMAP and the "Running Prediction" status message would show up on the results page, as exhibited in the web application shown in the right-hand side of the image. 
 
-On the right-hand side of the image one can observe the terminal logging of the prediction exhibited by docker logs.  GPU was not used in this case. 
+On the right-hand side of the image one can observe the terminal logging of the prediction exhibited by docker logs. 
 ![predsmapAE](/example/resultspage_running_pred_smap_VAE-LSTM.png)
 
 Once the predictions are available, the program moves on to the evaluations step, and the status message is changed to "Running Evaluation." Finally, once evaluation is done, the program outputs "Sucesss" in the status message, and the final results page is rendered with plotfinal.html.
 ![finalsmapAE](/example/resultspage_final_smap_VAE-LSTM.png)
 
-One may observe the demo videos  [SMAP_VAE-LSTM](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/SMAP_AE.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/msl_AE) to better observe the application, where one may select different channels to observe the output predictions of SMAP running on VAE-LSTM and MSL running on AE. 
-
-
+One may observe the demo videos  [SMAP_VAE-LSTM](https://github.com/lee-chaeeun/anom_dapp/blob/cf7dd57688ec5edd258618e0428773a9080fd3f7/example/SMAP_VAE-LSTM.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/blob/cf7dd57688ec5edd258618e0428773a9080fd3f7/example/msl_AE.mkv) to better observe the application, where one may select different channels to observe the output predictions of SMAP running on VAE-LSTM and MSL running on AE. 
 
 ## Closing
 
@@ -228,7 +227,6 @@ Future systems should run on a GPU with higher RAM (maybe 8GB), CPU with storage
 Real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. 
 
 More plots could be added to display fscore and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on the respective datasets. Further development is direction is especially recommended to better accommodate the original aim of mvts-ano-eval, which was to better compare the different techniques existing for anomaly detection. 
-
 
 ## Credits
 
