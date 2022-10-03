@@ -202,7 +202,13 @@ Finally, the background task outputs "True" in `app_cfg.flag`, once the algorith
 Once the web application page is rendered, the user may click "Return to Index page" to return to the front page of the web application. Furthermore, in the case that the user is running a dataset which has multiple channels, the different channel outputs can be observed at any time during the running of the chosen algorithm by using the drop-down menu bar provided on the upper left-hand corner of the results page. Clicking "Return to Index page" does not abruptly end the asynchronous running of the algorithm. To kill the asynchronous task, the user may either have to kill or stop the docker container or restart docker services. The option was not added to limit the control in the program managed by a global class. 
 
 ### Docker
-The whole program is wrapped in a docker container for ease of use. In the dockerfile, the cuda libraries and conda environment profiles are downloaded on to the docker image as the docker is built. Here the environment is created to run AnomDApp and all code necessary is copied on to the current working directory of the respective docker image. Therefore, containerization provides the benefit that GPU access and working with NVIDIA CUDA Toolkit is made easier. 
+The whole program is wrapped in a Docker container for ease of use, exhibited by the Docker logo, docker moby in blue in the upper left-hand corner of the diagram. A Docker container refers to software which is packaged using OS-level virtualization. Such a container is isolated from the rest of the device it is run on, and thereby allows for ease in downloading, running, and deleting of the software. 
+
+In the dockerfile of this repository, the cuda libraries and conda environment profiles are downloaded on to the docker image as the docker is built. Here the conda environment is created to run AnomDApp and all code necessary is copied on to the current working directory of the respective docker image. Therefore, containerization provides the benefit that the oftentimes cumbersome tasks of GPU access and working with NVIDIA CUDA Toolkit are made easier. 
+
+Here, [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) is a development environment including GPU-accelerated libraries which allows for faster and more efficient anomaly detection. 
+
+
 
 ## Example
 Demo videos of running MSL on Autoencoder based reconstruction and SMAP on VAE-LSTM are provided in the example folder to exemplify the workings of application. The frontpage of AnomDApp is shown in the following. 
