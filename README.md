@@ -168,20 +168,21 @@ set path: \<root-of-the-project>/data/raw/wadi/raw
 Flask-Executor is used to execute background processes. 
 
 ## Example
-Demo videos of running Skab, MSL, and SMAP on an Autoencoder as well as Screenshots of AnomDApp are provided in the screenshots folder. The frontpage of AnomDApp is shown in the following. 
-![frontpage](/screenshots/frontpage.png)
+Demo videos of running Skab, MSL, and SMAP on an Autoencoder as well as example of AnomDApp are provided in the example folder. The frontpage of AnomDApp is shown in the following. 
+![frontpage](/example/frontpage.png)
 Here the user can use a dropdown menu bar to enter the desired dataset and anomaly detection algorithm. 
 
-If the user were to choose MSL running on AE, the original time series of one channel of MSL and the "Running Prediction" status message would show up on the results page, as exhibited on the left-hand side of the image. 
+If the user were to choose SMAP running on AE, the original time series of one channel of SMAP and the "Running Prediction" status message would show up on the results page, as exhibited in the web application shown in the right-hand side of the image. 
 
 On the right-hand side of the image one can observe the terminal logging of the prediction exhibited by docker logs.  GPU was not used in this case. 
-![predmslAE](/screenshots/resultspage_running_pred_msl_AE.png)
-In the following image, the user ran SMAP on AE. On the left-hand side of the image one can observe the final results page of plotfinal.html in debugging mode. 
-![predmslAE](/screenshots/resultspage_final_smap_AE.png)
-If the case the user were to choose Skab on AE. The results page would depict the following after the program successfully running, thereby rendering plotfinal.html in debugging mode. 
-![finalskabAE](/screenshots/resultspage_final_skab_AE.png)
+![predsmapAE](/example/resultspage_running_pred_smap_AE.png)
 
-One may observe the demo videos  [SMAP_AE](https://github.com/lee-chaeeun/anom_dapp/blob/main/README.md#example) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/blob/main/README.md#example) to better observe the application, where one may select different channels to observe the output predictions of. 
+Once the predictions are available, the program moves on to the evaluations step, and the status message is changed to "Running Evaluation." Finally, once evaluation is done, the program outputs "Sucesss" in the status message, and the final results page is rendered with plotfinal.html.
+![finalsmapAE](/example/resultspage_final_smap_AE.png)
+
+One may observe the demo videos  [SMAP_AE](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/SMAP_AE.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/msl_AE) to better observe the application, where one may select different channels to observe the output predictions of SMAP and MSL running on AE. 
+
+
 
 ## Closing
 
