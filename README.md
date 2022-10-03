@@ -1,8 +1,8 @@
 
-# Containerized Anomaly Detection on Time Series Visualized on Web Server
+# Containerized Web Server for Visualizing Anomaly Detection of Time Series Data from CPS Systems 
 
 ## Abstract
-The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series  discussed in the paper on a REST API in real-time. The REST API is a flask web server and is deployed in a docker container for ease of use. The anomaly detection application will be referred to in the following as "AnomDApp."
+The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application in real-time. The application has a python-flask web server and is deployed in a docker container for ease of use. The anomaly detection application will be referred to in the following as "AnomDApp."
 
 ***Repository is still in production***
 
@@ -64,6 +64,11 @@ git clone https://github.com/lee-chaeeun/mvts-docker.git
 docker build -t anom_dapp:latest .
 docker run --gpus all -d -p 5000:5000 anomdetapp:latest
 ```
+After building docker, an example output can be observed as such, using the `docker images` command. 
+![dockerimages](/example/dockerimages.png)
+After executing the run command, the terminal should respond with an output similar to the following. 
+![dockerrunning](/example/dockerrunning.png)
+
 ***Tips for debugging in future production***
 
 Show error or logs of docker after running 
@@ -165,7 +170,29 @@ set path: \<root-of-the-project>/data/raw/wadi/raw
 ## AnomDApp Algorithm
 ![Flowchart of Dataflow in AnomDApp](flowchart.png)
 
-Flask-Executor is used to execute background processes. 
+### Server
+The Flask-based web server is shown in light blue. [Flask](https://flask.palletsprojects.com/en/2.2.x/) is a micro web framework used to allow ease in development of a web server, without requiring other tools or libraries. Although it is not viable as is developed in this repository in production, it is a lightweight server that allows for quick development. Furthermore, It is regularly maintained by the "[Pallets](https://palletsprojects.com/)" community. 
+
+The method was thereby chosen to allow for ease in development,  especially using python. This allows for ease in extension of the program from anomaly detection in the mvts-ano-eval repository on python to  the integration of said algorithms into web server development. 
+
+### Asynchronous Task
+In the diagram Flask-Executor, shown in green, is used to execute the anomaly detection algorithm as a background process to the web application in the form of a simple task queue. 
+
+[Flask-executor](https://pypi.org/project/Flask-Executor/) is an extension package which acts as a wrapper for `concurrent.futures` module, thereby allowing users to easily launch parallel tasks on the server. Here, asynchronous execution of callables of `ThreadPoolExecutor` are wrapped by Flask-Executor with the current application context and current request context automatically.  
+
+For the purposes of this repository, Flask-Executor excutes the running of the chosen algorithm and dataset asynchronously to the rendering of the new results page and transfer of information between the server and client of AnomDApp. 
+
+### Dataflow
+
+The dataflow of main processes are marked with black arrows, and the changing process statuses are shown in white arrows. 
+
+Due to the multitude of states and asychronous tasks, a global class is declared in the application as  `app_cfg`, denoting application configuration. In this class, app_cfg.flag is used to communicate between two main processes running parallel in the algorithm, which are the anomaly detection algorithm and the web server response to the client. 
+
+The asynchronous task for anomaly detection outputs a string,  "start" once the algorithm has began to run. In this case, the variable `d_flag` is used to evaluate whether or not the predictions pickle file, containing anomaly scores has been produced or not. If false, the server will respond with a null output with a string exhibiting the status, "Running Prediction." If true, the server will respond with data retrieved by functions for loading data and creating graphs within the docker working directory, as well as a string exhibiting the status message, "Running Evaluation." 
+
+Then, the background task outputs "True", once the algorithm has run successfully. In this case, the status message string is changed to "Sucess," and the web server passes on a message to the client to close the SSE connection. Then, the server renders the final output page from plotfinal.html. 
+
+Once the web application page is rendered, the user may click "Return to Index page" to return to the front page of the web application. Furthermore, in the case that the user is running a dataset which has multiple channels, the different channel outputs can be observed at any time during the running of the chosen algorithm by using the dropdown menu bar provided on the upper left-hand corner of the results page. Clicking "Return to Index page" does not abruptly end the asynchronous running of the algorithm. To kill the asynchronous task, the user may either have to kill or stop the docker container or restart docker services. The option was not added to limit the control in the program managed by a global class. 
 
 ## Example
 Demo videos of running Skab, MSL, and SMAP on an Autoencoder as well as example of AnomDApp are provided in the example folder. The frontpage of AnomDApp is shown in the following. 
@@ -180,7 +207,7 @@ On the right-hand side of the image one can observe the terminal logging of the 
 Once the predictions are available, the program moves on to the evaluations step, and the status message is changed to "Running Evaluation." Finally, once evaluation is done, the program outputs "Sucesss" in the status message, and the final results page is rendered with plotfinal.html.
 ![finalsmapAE](/example/resultspage_final_smap_VAE-LSTM.png)
 
-One may observe the demo videos  [SMAP_VAE-LSTM](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/SMAP_AE.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/msl_AE) to better observe the application, where one may select different channels to observe the output predictions of SMAP and MSL running on AE. 
+One may observe the demo videos  [SMAP_VAE-LSTM](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/SMAP_AE.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/example/blob/main/msl_AE) to better observe the application, where one may select different channels to observe the output predictions of SMAP running on VAE-LSTM and MSL running on AE. 
 
 
 
@@ -196,11 +223,11 @@ NVDIDIA GeForce GTX 750 Ti with 2048 MB
  
 Future systems should run on a GPU with higher RAM (maybe 8GB), CPU with storage around 300GB for dataset and results storage. 
 * current system was not able to process code for SWaT and WADI. Therefore, testing was not sufficient, though dataframes produced to exhibit graph information were successfully received as output. 
-* Current system is also unable to process UAE, with terminal being killed in the process of running, with no error. 
+* Current system is also unable to process UAE, with terminal being killed in the process of running, with no errors being logged. 
 
-Real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth processing pipeline of this information may be useful for faster real-time output. 
+Real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. 
 
-More plots could be added to display fscore and other metrics to compare different algorithms and their performance on the respective datasets. 
+More plots could be added to display fscore and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on the respective datasets. Further development is direction is especially recommended to better accommodate the original aim of mvts-ano-eval, which was to better compare the different techniques existing for anomaly detection. 
 
 
 ## Credits
@@ -216,7 +243,7 @@ All algorithms used in AnomDApp are forked from https://github.com/astha-chem/mv
 <p>S. Li and J. Wen, “A model-based fault detection and diagnostic methodology based on pca method and wavelet transform,” Energy and Buildings, vol. 68, pp. 63–71, 2014</p>
 
 #### Univariate AutoEnconder based Reconstruction
-<p>Simple fully connected univariate autoencoder, where channel-wise auto-encoders are placed for each channel. Shown in mvts-ano-eval to be best performing algorithm </p> 
+<p>Simple fully connected univariate autoencoder, where channel-wise auto-encoders are placed for each channel. Shown in mvts-ano-eval to be best performing algorithm. </p> 
 <p>requires high computation power and GPU memory to save predictions and evaluation. </p>  
 
 #### AutoEncoder based Reconstruction
