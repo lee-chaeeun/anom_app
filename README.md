@@ -127,6 +127,7 @@ get_datasets.sh
 ```
 2. Add datasets not included in this repository to respective paths listed below. [Datasets](https://github.com/lee-chaeeun/anom_dapp#datasets)
 
+3. Run application in Conda environment
 ```bash
 python3 app.py
 ```
