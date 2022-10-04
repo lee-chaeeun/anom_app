@@ -115,10 +115,11 @@ Delete all containers and images
 ```bash
 git clone https://github.com/lee-chaeeun/mvts-docker.git
 conda env create -f environment.yml
-source activate mvtsenvs
+source activate myenv
 python3 -m pip3 install --user --upgrade pip
+# Run if following packages are not downloaded properly in the environment
 # based on your cuda version or use the cpu only version
-conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
+#conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
 # cpu only
 # conda install pytorch==1.2.0 torchvision==0.4.0 cpuonly -c pytorch
 python3 setup.py install
@@ -187,9 +188,9 @@ For the purposes of this repository, Flask-Executor excutes the running of the c
 
 ### Dataflow
 
-The dataflow of main processes are marked with black arrows, and the changing process statuses are shown in white arrows. 
+The dataflow of main processes are marked with black arrows, and the changing process statuses are marked in white arrows. 
 
-Due to the multitude of states and asychronous tasks, a global class is declared in the application as  `app_cfg`, denoting application configuration. In this class, `app_cfg.flag` is used to communicate between two main processes running parallel in the algorithm, which are the anomaly detection algorithm and the web server response to the client. 
+Due to the multitude of states and asynchronous tasks, a global class is declared in the application as  `app_cfg`, denoting application configuration; albeit the slight misnomer, `app_cfg.flag` is used to communicate between two main processes running parallel in the algorithm, which are the anomaly detection algorithm and the web server response to the client. 
 
 The asynchronous task for anomaly detection outputs a string,  "start" in `app_cfg.flag` once the algorithm has began to run. 
 
@@ -204,7 +205,7 @@ Once the web application page is rendered, the user may click "Return to Index p
 ### Docker
 The whole program is wrapped in a Docker container for ease of use, exhibited by the Docker logo, docker moby in blue in the upper left-hand corner of the diagram. A Docker container refers to software which is packaged using OS-level virtualization. Such a container is isolated from the rest of the device it is run on, and thereby allows for ease in downloading, running, and deleting of the software. 
 
-In the dockerfile of this repository, the cuda libraries and conda environment profiles are downloaded on to the docker image as the docker is built. Here the conda environment is created to run AnomDApp and all code necessary is copied on to the current working directory of the respective docker image. Therefore, containerization provides the benefit that the oftentimes cumbersome tasks of GPU access and working with NVIDIA CUDA Toolkit are made easier. 
+In the dockerfile of this repository, the cuda libraries and conda environment profiles are downloaded on to the docker image as the docker is built. Here the Conda environment is created to run AnomDApp and all code necessary is copied on to the current working directory of the respective docker image. All necessaries packages are downloaded onto the Conda environment via environment.yml. Therefore, containerization provides the benefit that the oftentimes cumbersome tasks of GPU access and working with NVIDIA CUDA Toolkit are made easier. 
 
 Here, [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) is a development environment including GPU-accelerated libraries which allows for faster and more efficient anomaly detection. 
 
@@ -238,7 +239,7 @@ NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7
 NVDIDIA GeForce GTX 750 Ti with 2048 MB
  
 Future systems should run on a GPU with higher RAM (maybe 8GB), CPU with storage around 300GB for dataset and results storage. 
-* current system was not able to process code for SWaT and WADI. Therefore, testing was not sufficient, though dataframes produced to exhibit graph information were successfully received as output. 
+* Current system was not able to process code for SWaT and WADI. Therefore, testing was not sufficient, though dataframes produced to exhibit graph information were successfully received as output. 
 * Current system is also unable to process UAE, with terminal being killed in the process of running, with no errors being logged. 
 
 Real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. 
