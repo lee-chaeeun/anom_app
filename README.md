@@ -1,8 +1,9 @@
 
+
 # Containerized Web Server for Visualizing Anomaly Detection of Time Series Data from CPS Systems 
 
 ## Abstract
-The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application in real-time. The application has a python-flask web server and is deployed in a docker container for ease of use.  This repository thereby aims to allow for future users to freely apply deep learning in various facets of industry without having expert knowledge through the development of a user-friendly web application.  The respective anomaly detection application will be referred to in the following as "AnomDApp."
+The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application in real-time. The application has a python-flask web server and is deployed in a docker container for ease of use.  This repository thereby aims to allow for future users to freely apply deep learning in various facets of industry without having expert knowledge through the development of a user-friendly web application. The respective anomaly detection application will be referred to in the following as "AnomDApp."
 
 ***Repository is still in production***
 
@@ -110,7 +111,7 @@ Delete all containers and images
 
 ### Run AnomDApp in Conda environment 
 
-1. Run following bash code in terminal 
+1. Run following bash code in terminal to create proper environment to run server
 
 ```bash
 git clone https://github.com/lee-chaeeun/mvts-docker.git
@@ -169,7 +170,9 @@ set path: \<root-of-the-project>/data/raw/swat/raw
 source: fill out following [form](https://docs.google.com/forms/d/e/1FAIpQLSfnbjv7ZnDNmV_5ge7OfUc_O_h5yUnj708TFL8dD3o3Yoj9Fw/viewform)  from iTrust
 
 take csv tables in 02_WADI Dataset_19 Nov 2017 folder
+
 rename anomalies file to WADI_anomalies
+
 set path: \<root-of-the-project>/data/raw/wadi/raw
 
 ## AnomDApp Algorithm
@@ -185,7 +188,7 @@ In the diagram Flask-Executor, shown in green, is used to execute the anomaly de
 
 [Flask-executor](https://pypi.org/project/Flask-Executor/) is an extension package which acts as a wrapper for `concurrent.futures` module, thereby allowing users to easily launch parallel tasks on the server. Here, asynchronous execution of callables of `ThreadPoolExecutor` are wrapped by Flask-Executor with the current application context and current request context automatically.  
 
-For the purposes of this repository, Flask-Executor excutes the running of the chosen algorithm and dataset asynchronously to the rendering of the new results page and transfer of information between the server and client of AnomDApp. 
+For the purposes of this repository, Flask-Executor executes the running of the chosen algorithm and dataset asynchronously to the rendering of the new results page and transfer of information between the server and client of AnomDApp. 
 
 ### Dataflow
 
@@ -234,6 +237,8 @@ In the demo videos, it is important to note that the status message of "Running 
 ### Future development, Room for improvement
 
 System run on: 
+
+Ubuntu 22.04 LTS
   
 NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7   
   
@@ -249,7 +254,7 @@ Another limitation of the current application is that it is limited to running o
 
 Furthermore, with the current run, the predictions and results are saved but not used by the program again. One may take advantage of this data to be either uploaded to cloud or saved on the device such that the user may fetch the data to compare with other runs through the web interface. 
 
-More plots could be added to display fscore and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on the respective datasets. Further development is direction is especially recommended to better accommodate the original aim of mvts-ano-eval, which was to better compare the different techniques existing for anomaly detection. 
+More plots could be added to display fscore and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on the respective datasets. Further development  in this direction is especially recommended to better accommodate the original aim of mvts-ano-eval, which was to better compare the different techniques existing for anomaly detection. 
 
 ## Credits
 
@@ -268,11 +273,9 @@ All algorithms used in AnomDApp are forked from https://github.com/astha-chem/mv
 <p>requires high computation power and GPU memory to save predictions and evaluation. </p>  
 
 #### AutoEncoder based Reconstruction
-
 <p>S. Hawkins, H. He, G. Williams, and R. Baxter, “Outlier detection using replicator neural networks,” in International Conference on Data Warehousing and Knowledge Discovery. Springer, 2002, pp. 170–180.</p>
 
 #### LSTM-ED based Reconstruction
-
 <p>P. Malhotra, A. Ramakrishnan, G. Anand, L. Vig, P. Agarwal, and G. Shroff, “Lstm-based encoder-decoder for multi-sensor anomaly detection,” arXiv preprint arXiv:1607.00148, 2016.</p>
 
 #### TcnED 
@@ -280,7 +283,6 @@ All algorithms used in AnomDApp are forked from https://github.com/astha-chem/mv
 <p> S. Bai, J. Z. Kolter, and V. Koltun, “An empirical evaluation of generic convolutional and recurrent networks for sequence modeling,” arXiv preprint arXiv:1803.01271, 2018.</p>
 
 #### VAE-LSTM 
-
 <p>based on work from following paper<p/> 
 <p>D. Park, Y. Hoshi, and C. C. Kemp, “A multimodal anomaly detector for robot-assisted feeding using an lstm-based variational autoencoder,” IEEE Robotics and Automation Letters, vol. 3, no. 3, pp. 1544–1551, 2018.</p>        
 
@@ -289,7 +291,6 @@ All algorithms used in AnomDApp are forked from https://github.com/astha-chem/mv
 <p> C. Zhang, D. Song, Y. Chen, X. Feng, C. Lumezanu, W. Cheng, J. Ni, B. Zong, H. Chen, and N. V. Chawla, “A deep neural network for unsupervised anomaly detection and diagnosis in multivariate time series data,” in Proceedings of the AAAI Conference on Artificial Intelligence, vol. 33, 2019, pp. 1409–1416.</p>    
 
 #### OmniAnoAlgo
-
 <p>Y. Su, Y. Zhao, C. Niu, R. Liu, W. Sun, and D. Pei, “Robust anomaly detection for multivariate time series through stochastic recurrent neural network,” in Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2019, pp. 2828–
 2837.</p>   
 
