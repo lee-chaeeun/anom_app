@@ -63,9 +63,9 @@ The following instructions assume that the user has access to a GPU and an Ubunt
 3. Run following bash in terminal.
 
 ```bash
-git clone https://github.com/lee-chaeeun/mvts-docker.git
+git clone https://github.com/lee-chaeeun/anom_dapp.git
 docker build -t anom_dapp:latest .
-docker run --gpus all -d -p 5000:5000 anomdetapp:latest
+docker run --gpus all -d -p 5000:5000 anom_dapp:latest
 ```
 After building docker, an example output can be observed as such, using the `docker images` command. 
 ![dockerimages](/example/dockerimages.png)
