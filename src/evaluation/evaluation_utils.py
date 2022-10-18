@@ -8,9 +8,9 @@ import umap
 import traceback
 
 from configs import default_thres_config, constant_std
-from src.algorithms.telem_anom.errors import Errors
+#from src.algorithms.telem_anom.errors import Errors
 
-from src.algorithms.telem_anom.channel import Channel
+#from src.algorithms.telem_anom.channel import Channel
 from src.datasets.skab import Skab
 
 from src.datasets.swat import Swat
