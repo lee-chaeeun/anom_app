@@ -136,6 +136,8 @@ python3 app.py
 
 This option is more volatile compared to running docker; one must pay careful attention to version mismatches in environment of each package. 
 
+User may use 'F12' to access console of web application client on localhost to observe SSE connection and respective logs. 
+
 ## Datasets
 
 ### Skab
@@ -244,17 +246,15 @@ NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7
   
 NVDIDIA GeForce GTX 750 Ti with 2048 MB
  
-Future systems should run on a GPU with higher RAM (maybe 8GB), CPU with storage around 300GB for dataset and results storage. 
-* Current system was not able to process code for SWaT and WADI. Therefore, testing was not sufficient, though dataframes produced to exhibit graph information were successfully received as output. 
-* Current system is also unable to process UAE, with terminal being killed in the process of running, with no errors being logged. 
+Due to the limitations of the current system stated above, future systems to test AnomDApp are recommended to run on a GPU with higher RAM, at at least 4 GB. Furthermore, a CPU with at least 120 GB disk capacity is recommended in order to allot enough space for MVTS data and Docker image. This is especially recommended due to difficulties faced when developing initially with 80 GB disk capacity. These difficulties include but are not limited to errors of terminal termination during run, Ubuntu screen freezing, and lag in loading the data into excel. Development was further marred by extreme latency issues for the current system as well with GPU of 2 GB RAM, CPU of 4 GB RAM and disk capacity of 130 GB. As mentioned above, not all algorithm and dataset combinations could be thoroughly tested due to latency and program termination issues. Therefore, higher GPU, CPU RAM and disk capacity is emphasized to be of importance in future development.
 
-Real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. 
+Another aspect future research in this area may focus on is the following. In the case of AnomDApp, real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. This would be especially desirable for industry applications that produce agile detection and diagnosis to prevent expensive repercussions to failure in CPS. 
 
-Another limitation of the current application is that it is limited to running one anomaly detection algorithm with one dataset. For further ease in the user's comparison of different datasets and different algorithms, ideally the user would be able to mix and match desired combinations. Therefore, the interface could be expanded to run multiple algorithms one dataset, for example. Furthermore, another page comparing different runs could be created. 
+Another limitation of the AnomDApp is that it is limited to running one anomaly detection algorithm with one dataset. For further ease in the user's comparison of different datasets and different algorithms, ideally the user would be able to mix and match desired combinations. Therefore, the following additions to AnomDApp may be beneficial. The interface may be expanded to run multiple algorithms for one dataset. In this case, another page comparing different runs may be created. Additionally, an interface to receive new data fitting certain requirements may be created. Then, the server may properly process the data to train the algorithms. Albeit the complexity of such a system, user benefit would increase due to increased flexibility and applicability of the program. 
 
-Furthermore, with the current run, the predictions and results are saved but not used by the program again. One may take advantage of this data to be either uploaded to cloud or saved on the device such that the user may fetch the data to compare with other runs through the web interface. 
+Furthermore, with the current run, the predictions and results are saved but not used by the program again. One may take advantage of this data to be either uploaded to cloud or saved on the device such that the user may fetch the data to compare with other runs through the web interface.
 
-More plots could be added to display fscore and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on the respective datasets. Further development  in this direction is especially recommended to better accommodate the original aim of mvts-ano-eval, which was to better compare the different techniques existing for anomaly detection. 
+Finally, more plots could be added to display the composite F1-score and other metrics in the results file produced by the repository, mvts-ano-eval to compare different algorithms and their performance on different data. Further development in this direction is especially recommended to better accommodate the original aim of [1], which was to better compare the different techniques existing for anomaly detection and successfully so using the composite F-score.
 
 ## Credits
 
