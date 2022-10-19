@@ -230,6 +230,9 @@ On the right-hand side of the image one can observe the terminal logging of the 
 Once the predictions are available, the program moves on to the evaluations step, and the status message is changed to "Running Evaluation." Finally, once evaluation is done, the program outputs "Sucesss" in the status message, and the final results page is rendered with plotfinal.html. 
 ![finalsmapAE](/example/resultspage_final_smap_VAE-LSTM.png)
 
+An example of SKAB running on UAE on an improved system at the IAS lab is shown in the following. 
+![successskabUAE](/example/SKAB_Success_UAE.png)
+
 One may observe the demo videos  [SMAP_VAE-LSTM](https://github.com/lee-chaeeun/anom_dapp/blob/cf7dd57688ec5edd258618e0428773a9080fd3f7/example/SMAP_VAE-LSTM.mkv) and [msl_AE](https://github.com/lee-chaeeun/anom_dapp/blob/cf7dd57688ec5edd258618e0428773a9080fd3f7/example/msl_AE.mkv) to better observe the application, where one may select different channels to observe the output predictions of SMAP running on VAE-LSTM and MSL running on AE. 
 
 In the demo videos, it is important to note that the status message of "Running Evaluation" is not observable due to the program response lag when running larger datasets with multiple channels. The lightest anomaly detection algorithm and dataset to run in order to check the capabilities of AnomDApp are Autoencoder based reconstruction and SKAB.  
