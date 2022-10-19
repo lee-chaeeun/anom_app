@@ -1,13 +1,13 @@
 
 
-# Containerized Web Server for Visualizing Anomaly Detection of Time Series Data from CPS Systems 
+# Containerized Web Server for Visualizing Anomaly Detection of Time Series Data from CPS  
 
 ## Abstract
-The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application in real-time. The application has a python-flask web server and is deployed in a docker container for ease of use.  This repository thereby aims to allow for future users to freely apply deep learning in various facets of industry without having expert knowledge through the development of a user-friendly web application. The respective anomaly detection application will be referred to in the following as "AnomDApp."
+The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application. The application has a python-flask web server and is deployed in a docker container for ease of use.  This repository thereby aims to allow for future users to freely apply deep learning in various facets of industry without having expert knowledge through the development of a user-friendly web application. The respective anomaly detection application will be referred to in the following as "AnomDApp."
 
 ***Repository is still in production***
 
-The following files were added to plot real-time results on a flask server. 
+The following files were added to plot results on a flask server. 
 * app.py 
 * loading.py
 * channel_classes.py
@@ -251,7 +251,7 @@ NVDIDIA GeForce GTX 750 Ti with 2048 MB
  
 Due to the limitations of the current system stated above, future systems to test AnomDApp are recommended to run on a GPU with higher RAM, at at least 4 GB. Furthermore, a CPU with at least 120 GB disk capacity is recommended in order to allot enough space for MVTS data and Docker image. This is especially recommended due to difficulties faced when developing initially with 80 GB disk capacity. These difficulties include but are not limited to errors of terminal termination during run, Ubuntu screen freezing, and lag in loading the data into excel. Development was further marred by extreme latency issues for the current system as well with GPU of 2 GB RAM, CPU of 4 GB RAM and disk capacity of 130 GB. As mentioned above, not all algorithm and dataset combinations could be thoroughly tested due to latency and program termination issues. Therefore, higher GPU, CPU RAM and disk capacity is emphasized to be of importance in future development.
 
-Another aspect future research in this area may focus on is the following. In the case of AnomDApp, real-time detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster real-time output. This would be especially desirable for industry applications that produce agile detection and diagnosis to prevent expensive repercussions to failure in CPS. 
+Another aspect future research in this area may focus on is the following. In the case of AnomDApp, detection responses can be improved by taking information bit by bit as it is produced before the anomaly scores are produced. A more in-depth and careful processing pipeline of this information may be useful for faster output. This would be especially desirable for industry applications that produce agile detection and diagnosis to prevent expensive repercussions to failure in CPS. 
 
 Another limitation of the AnomDApp is that it is limited to running one anomaly detection algorithm with one dataset. For further ease in the user's comparison of different datasets and different algorithms, ideally the user would be able to mix and match desired combinations. Therefore, the following additions to AnomDApp may be beneficial. The interface may be expanded to run multiple algorithms for one dataset. In this case, another page comparing different runs may be created. Additionally, an interface to receive new data fitting certain requirements may be created. Then, the server may properly process the data to train the algorithms. Albeit the complexity of such a system, user benefit would increase due to increased flexibility and applicability of the program. 
 
