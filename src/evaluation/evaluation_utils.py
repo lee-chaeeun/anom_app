@@ -62,7 +62,7 @@ def get_algo_class(algo_name):
              "PcaRecons": PcaRecons,
              "VAE-LSTM": VAE_LSTM,
              "TcnED": TcnED,
-             "TelemanomAlgo": TelemanomAlgo,
+             #"TelemanomAlgo": TelemanomAlgo,
              "RawSignalBaseline": RawSignalBaseline,
              "MSCRED": MSCRED,
              "OmniAnoAlgo": OmniAnoAlgo,
