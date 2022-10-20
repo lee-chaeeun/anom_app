@@ -232,6 +232,11 @@ On the right-hand side of the image one can observe the terminal logging of the 
 Once the predictions are available, the program moves on to the evaluations step, and the status message is changed to "Running Evaluation." Finally, once evaluation is done, the program outputs "Sucesss" in the status message, and the final results page is rendered with plotfinal.html. 
 ![finalsmapAE](/example/resultspage_final_smap_VAE-LSTM.png)
 
+An example of SMAP running on AE on an improved system at the IAS lab is shown in the following. 
+![anomalyscore](/example/anomalyscore.png)
+![channelwiseanomalyscore_smapE3_AE](/example/channelwiseanomalyscore_smapE3_AE.png)
+![baselinerecon_smapE3_AE](/example/baselinerecon_smapE3_AE.png)
+
 An example of SKAB running on UAE on an improved system at the IAS lab is shown in the following. 
 ![successskabUAE](/example/SKAB_Success_UAE.png)
 
