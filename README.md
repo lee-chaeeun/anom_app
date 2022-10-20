@@ -179,7 +179,6 @@ set path: \<root-of-the-project>/data/raw/wadi/raw
 
 ## AnomDApp Algorithm
 ![Flowchart of Dataflow in AnomDApp](/example/flowchart.png)
-![Algorithm of Dataflow in AnomDApp](/example/algorithm.png)
 
 ### Server
 The Flask-based web server is shown in light blue. [Flask](https://flask.palletsprojects.com/en/2.2.x/) is a micro web framework used to allow ease in development of a web server, without requiring other tools or libraries. Although it is not viable as is developed in this repository in production, it is a lightweight server that allows for quick development. Furthermore, It is regularly maintained by the "[Pallets](https://palletsprojects.com/)" community. 
@@ -201,6 +200,8 @@ Due to the multitude of states and asynchronous tasks, a global class is declare
 
 The asynchronous task for anomaly detection outputs a string,  "start" in `app_cfg.flag` once the algorithm has began to run. 
 
+![Algorithm of Dataflow in AnomDApp](/example/algorithm.png)
+  
 In this case, the variable `d_flag` is used to evaluate whether or not the predictions pickle file, containing anomaly scores has been produced or not. If `d_flag` is false, the server will respond with a null output with a string, namely `ret_string` exhibiting the status, "Running Prediction." If `d_flag` is true, the server will respond with `ret_string`, containing data retrieved by functions for loading data and creating graphs within the docker working directory, as well as a string exhibiting the status message, "Running Evaluation." 
 
 Furthermore, as soon as the server renders a new web page for the client with plot_realtime.html, an SSE connection will be opened between the client and the server such that the client may receive plotting data from the server. Here, an SSE connection refers to server-sent-event, and this is desirable for the purposes of AnomDApp because the main information exchange is that of the prediction graphs from the server to client. Once requested in accordance to control conducted by `d_flag`, the functions in loading.py are relayed onto plotting.py, where graphs for the original time-series data of the cyber-physical systems, anomaly scores, channel-wise anomaly scores, and the baseline and reconstruction of the anomaly scores are collected in the application. Here, the graphs are plotted using [Plotly](https://plotly.com/python/), an open source graphing library for python which allows for ease in production of interactive graphs exhibiting multivariate data. The `PlotlyJSONEncoder` module of `plotly.utils` is used to encode the data in JSON and export it to the client. This allows for the server to send this information through SSE connection to the client. 
