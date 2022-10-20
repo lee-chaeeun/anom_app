@@ -179,6 +179,7 @@ set path: \<root-of-the-project>/data/raw/wadi/raw
 
 ## AnomDApp Algorithm
 ![Flowchart of Dataflow in AnomDApp](/example/flowchart.png)
+![Algorithm of Dataflow in AnomDApp](/example/algorithm.png)
 
 ### Server
 The Flask-based web server is shown in light blue. [Flask](https://flask.palletsprojects.com/en/2.2.x/) is a micro web framework used to allow ease in development of a web server, without requiring other tools or libraries. Although it is not viable as is developed in this repository in production, it is a lightweight server that allows for quick development. Furthermore, It is regularly maintained by the "[Pallets](https://palletsprojects.com/)" community. 
