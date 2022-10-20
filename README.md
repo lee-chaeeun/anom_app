@@ -233,6 +233,11 @@ Once the predictions are available, the program moves on to the evaluations step
 ![finalsmapAE](/example/resultspage_final_smap_VAE-LSTM.png)
 
 An example of SMAP running on AE on an improved system at the IAS lab is shown in the following. 
+This is the time-series output when all channels are shown in the time-series graph of SMAP-E3.
+![smapE3](/example/smapE3.png)
+This is the time-series output when the anomalies are chosen to be shown in the time-series graph of SMAP-E3.
+![timeseriesanomaly](/example/timeseriesanomaly.png)
+The following are the graphs produced from predictions. 
 ![anomalyscore](/example/anomalyscore.png)
 ![channelwiseanomalyscore_smapE3_AE](/example/channelwiseanomalyscore_smapE3_AE.png)
 ![baselinerecon_smapE3_AE](/example/baselinerecon_smapE3_AE.png)
