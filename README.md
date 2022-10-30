@@ -5,8 +5,6 @@
 ## Abstract
 The goal of this repository is to visualize results of anomaly detection algorithms on multivariate time-series from cyber-physical systems on a web server application. The application has a python-flask web server and is deployed in a docker container for ease of use.  This repository thereby aims to allow for future users to freely apply deep learning in various facets of industry without having expert knowledge through the development of a user-friendly web application. The respective anomaly detection application will be referred to in the following as "AnomDApp."
 
-***Repository is still in production***
-
 The following files were added to plot results on a flask server. 
 * app.py 
 * loading.py
